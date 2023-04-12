@@ -13,7 +13,7 @@ public class UserDataHandler {
             throw new NumberFormatException();
         }
 
-        for(String token: dateTokens) {
+        for (String token: dateTokens) {
             try {
                 numbers.add(Integer.parseInt(token));
             } catch (NumberFormatException e) {
@@ -37,6 +37,19 @@ public class UserDataHandler {
 
         if (numbers.get(2) < 1) {
             System.out.println("Wrong year");
+            throw new NumberFormatException();
+        }
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate birthDate = LocalDate.of(numbers.get(2), numbers.get(1), numbers.get(0));
+
+        if ((currentDate.getYear() < birthDate.getYear()) ||
+            (currentDate.getYear() == birthDate.getYear() &&
+             currentDate.getMonth().getValue() < birthDate.getMonth().getValue()) ||
+            (currentDate.getYear() == birthDate.getYear() &&
+             currentDate.getMonth().getValue() == birthDate.getMonth().getValue() &&
+             currentDate.getDayOfMonth() < birthDate.getDayOfMonth())) {
+            System.out.println("Wrong date");
             throw new NumberFormatException();
         }
 
