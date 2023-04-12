@@ -1,9 +1,10 @@
 package DataHandler;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class UserDataHandler {
-    public static int checkDate(String userDate) {
+    public static LocalDate checkDate(String userDate) {
         String[] dateTokens = userDate.split("\\.");
         ArrayList<Integer> numbers = new ArrayList<>();
 
@@ -39,6 +40,6 @@ public class UserDataHandler {
             throw new NumberFormatException();
         }
 
-        return numbers.get(2);
+        return LocalDate.of(numbers.get(2), numbers.get(1), numbers.get(0));
     }
 }
