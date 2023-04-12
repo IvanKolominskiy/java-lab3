@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserDataHandler {
-    public static void checkDate(String userDate) {
+    private static void checkDate(String userDate) {
         String[] dateTokens = userDate.split("\\.");
         ArrayList<Integer> numbers = new ArrayList<>();
 
@@ -58,7 +58,7 @@ public class UserDataHandler {
         }
     }
 
-    public static void checkName(String surname, String name, String patronymic) {
+    private static void checkName(String surname, String name, String patronymic) {
         Pattern pattern = Pattern.compile("[а-яёА-ЯЁ]+");
         Matcher matcher = pattern.matcher(name + surname + patronymic);
 
@@ -70,7 +70,7 @@ public class UserDataHandler {
         }
     }
 
-    public static String getAge(String userDate) {
+    private static String getAge(String userDate) {
         String[] dateTokens = userDate.split("\\.");
 
         LocalDate currentDate = LocalDate.now();
@@ -94,7 +94,7 @@ public class UserDataHandler {
         return  age;
     }
 
-    public static String getGender(String patronymic) {
+    private static String getGender(String patronymic) {
         char patronymicLastLetter = patronymic.charAt(patronymic.length() - 1);
 
         if (patronymicLastLetter == 'ч') {
@@ -104,7 +104,7 @@ public class UserDataHandler {
         }
     }
 
-    public static String getName(String surname, String name, String patronymic) {
+    private static String getName(String surname, String name, String patronymic) {
         return surname + " " + name.charAt(0) + "." + patronymic.charAt(0) + ".";
     }
 }
