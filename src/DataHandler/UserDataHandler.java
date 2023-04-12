@@ -1,6 +1,7 @@
 package DataHandler;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 
 public class UserDataHandler {
@@ -54,5 +55,24 @@ public class UserDataHandler {
         }
 
         return LocalDate.of(numbers.get(2), numbers.get(1), numbers.get(0));
+    }
+
+    public static String getAge(LocalDate birthDate) {
+        LocalDate currentDate = LocalDate.now();
+
+        String age = Integer.toString(Period.between(birthDate, currentDate).getYears());
+        int ageValue = Integer.parseInt(age);
+
+        int lastNumber = Integer.parseInt(String.valueOf(age.charAt(age.length() - 1)));
+
+        if ((ageValue > 10 && ageValue < 15) || (lastNumber > 4 && lastNumber <= 9) || (lastNumber == 0)) {
+            age += " лет";
+        } else if (lastNumber > 1 && lastNumber < 5) {
+            age += " года";
+        } else {
+            age += " год";
+        }
+
+        return  age;
     }
 }
