@@ -93,4 +93,14 @@ public class UserDataHandler {
 
         return  age;
     }
+
+    public static String getGender(String patronymic) {
+        char patronymicLastLetter = patronymic.charAt(patronymic.length() - 1);
+
+        if (patronymicLastLetter == 'ч') {
+            return "М";
+        } else {
+            return "Ж";
+        }
+    }
 }
