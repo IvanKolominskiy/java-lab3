@@ -17,8 +17,8 @@ public class UserDataHandler {
         }
 
         try {
-            checkDate(inputTokens[3]);
             checkName(inputTokens[0], inputTokens[1], inputTokens[2]);
+            checkDate(inputTokens[3]);
         } catch (NumberFormatException | InputMismatchException e) {
             throw new WrongInputException();
         }
