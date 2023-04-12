@@ -54,7 +54,7 @@ public class UserDataHandler {
             throw new NumberFormatException();
         }
 
-        return LocalDate.of(numbers.get(2), numbers.get(1), numbers.get(0));
+        return birthDate;
     }
 
     public static String getAge(LocalDate birthDate) {
