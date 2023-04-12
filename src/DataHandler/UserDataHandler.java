@@ -3,6 +3,9 @@ package DataHandler;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserDataHandler {
     public static LocalDate checkDate(String userDate) {
@@ -55,6 +58,18 @@ public class UserDataHandler {
         }
 
         return birthDate;
+    }
+
+    public static void checkName(String surname, String name, String patronymic) {
+        Pattern pattern = Pattern.compile("[а-яёА-ЯЁ]+");
+        Matcher matcher = pattern.matcher(name + surname + patronymic);
+
+        char patronymicLastLetter = patronymic.charAt(patronymic.length() - 1);
+
+        if (!matcher.matches() || (patronymicLastLetter != 'ч' && patronymicLastLetter != 'а')) {
+            System.out.println("Wrong name");
+            throw new InputMismatchException();
+        }
     }
 
     public static String getAge(LocalDate birthDate) {
