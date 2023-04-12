@@ -1,3 +1,6 @@
+import DataHandler.UserDataHandler;
+import DataHandler.WrongInputException;
+
 import java.util.Scanner;
 
 public class Main {
@@ -5,12 +8,12 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter name surname patronymic and date of birth");
-        String[] inputTokens = scanner.nextLine().split(" ");
+        String inputBuffer = scanner.nextLine();
 
-        if (inputTokens.length != 4) {
-            System.out.println("Wrong input");
-        } else {
-            //TODO
+        try {
+            String result = UserDataHandler.start(inputBuffer);
+            System.out.println(result);
+        } catch (WrongInputException ignored) {
         }
     }
 }
