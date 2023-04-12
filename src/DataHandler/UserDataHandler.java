@@ -8,6 +8,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserDataHandler {
+    public static String start(String userData) throws WrongInputException {
+        String[] inputTokens = userData.split(" ");
+
+        if (inputTokens.length != 4) {
+            System.out.println("Wrong input");
+            throw new WrongInputException();
+        }
+
+        try {
+            checkDate(inputTokens[3]);
+            checkName(inputTokens[0], inputTokens[1], inputTokens[2]);
+        } catch (NumberFormatException | InputMismatchException e) {
+            throw new WrongInputException();
+        }
+
+        return getName(inputTokens[0], inputTokens[1], inputTokens[2]) + " " +
+               getGender(inputTokens[2]) + " " +
+               getAge(inputTokens[3]);
+    }
+
     private static void checkDate(String userDate) {
         String[] dateTokens = userDate.split("\\.");
         ArrayList<Integer> numbers = new ArrayList<>();
