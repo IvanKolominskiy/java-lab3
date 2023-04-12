@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserDataHandler {
-    public static LocalDate checkDate(String userDate) {
+    public static void checkDate(String userDate) {
         String[] dateTokens = userDate.split("\\.");
         ArrayList<Integer> numbers = new ArrayList<>();
 
@@ -56,8 +56,6 @@ public class UserDataHandler {
             System.out.println("Wrong date");
             throw new NumberFormatException();
         }
-
-        return birthDate;
     }
 
     public static void checkName(String surname, String name, String patronymic) {
@@ -72,8 +70,13 @@ public class UserDataHandler {
         }
     }
 
-    public static String getAge(LocalDate birthDate) {
+    public static String getAge(String userDate) {
+        String[] dateTokens = userDate.split("\\.");
+
         LocalDate currentDate = LocalDate.now();
+        LocalDate birthDate = LocalDate.of(Integer.parseInt(dateTokens[2]),
+                                           Integer.parseInt(dateTokens[1]),
+                                           Integer.parseInt(dateTokens[0]));
 
         String age = Integer.toString(Period.between(birthDate, currentDate).getYears());
         int ageValue = Integer.parseInt(age);
