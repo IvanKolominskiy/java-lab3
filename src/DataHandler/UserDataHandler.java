@@ -8,6 +8,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserDataHandler {
+    /**
+     * Checks the entered information for correctness and brings it to the right view
+     *
+     * @param userData information entered by the user
+     * @return information in the correct form
+     * @throws WrongInputException if the name or date is entered incorrectly
+     */
     public static String start(String userData) throws WrongInputException {
         String[] inputTokens = userData.split(" ");
 
@@ -28,6 +35,11 @@ public class UserDataHandler {
                getAge(inputTokens[3]);
     }
 
+    /**
+     * Checks the date for correctness
+     *
+     * @param userDate Date entered by the user
+     */
     private static void checkDate(String userDate) {
         String[] dateTokens = userDate.split("\\.");
         ArrayList<Integer> numbers = new ArrayList<>();
@@ -78,6 +90,13 @@ public class UserDataHandler {
         }
     }
 
+    /**
+     * Checks the name for correctness
+     *
+     * @param surname surname entered by the user
+     * @param name name entered by the user
+     * @param patronymic patronymic entered by the user
+     */
     private static void checkName(String surname, String name, String patronymic) {
         Pattern pattern = Pattern.compile("[а-яёА-ЯЁ]+");
         Matcher matcher = pattern.matcher(name + surname + patronymic);
@@ -90,6 +109,12 @@ public class UserDataHandler {
         }
     }
 
+    /**
+     * Gives the age with the correct ending
+     *
+     * @param userDate Date entered by the user
+     * @return age with the correct ending
+     */
     private static String getAge(String userDate) {
         String[] dateTokens = userDate.split("\\.");
 
@@ -114,6 +139,12 @@ public class UserDataHandler {
         return  age;
     }
 
+    /**
+     * Gives the gender
+     *
+     * @param patronymic patronymic entered by the user
+     * @return the gender
+     */
     private static String getGender(String patronymic) {
         char patronymicLastLetter = patronymic.charAt(patronymic.length() - 1);
 
@@ -124,6 +155,14 @@ public class UserDataHandler {
         }
     }
 
+    /**
+     * Gives surname with initials
+     *
+     * @param surname surname entered by the user
+     * @param name name entered by the user
+     * @param patronymic patronymic entered by the user
+     * @return  surname with initials
+     */
     private static String getName(String surname, String name, String patronymic) {
         return surname + " " + name.charAt(0) + "." + patronymic.charAt(0) + ".";
     }
