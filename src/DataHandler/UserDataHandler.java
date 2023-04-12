@@ -103,4 +103,8 @@ public class UserDataHandler {
             return "Ж";
         }
     }
+
+    public static String getName(String surname, String name, String patronymic) {
+        return surname + " " + name.charAt(0) + "." + patronymic.charAt(0) + ".";
+    }
 }
